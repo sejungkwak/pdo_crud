@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Database App</title>
+<?php include "templates/header.php"; ?>
 
-    <link rel="stylesheet" href="css/style.css" />
-</head>
+<ul>
+    <li>
+        <a href="create.php"><strong>Create</strong></a> - add a user
+    </li>
+    <li>
+        <a href="read.php"><strong>Read</strong></a> - find a user
+    </li>
+</ul>
 
-<body>
-    <h1>Simple Database App</h1>
-    <ul>
-        <li>
-             <a href="create.php"><strong>Create</strong></a> - add a user
-        </li>
-        <li>
-            <a href="read.php"><strong>Read</strong></a> - find a user
-        </li>
-    </ul>
-</body>
-</html>
+<?php include "templates/footer.php"; ?>

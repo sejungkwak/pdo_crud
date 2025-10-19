@@ -5,11 +5,9 @@
 <?php 
 
 if (isset($_POST['submit'])) {
-
-    require "../config.php";
-
     try {
-        $connection = new PDO($dsn, $username, $password, $options);
+        require_once "../src/DBconnect.php";
+
         $new_user = array(
             "firstname" => $_POST['firstname'],
             "lastname" => $_POST['lastname'],

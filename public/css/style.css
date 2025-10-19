@@ -1,15 +1,13 @@
-label {
+body {
+    padding-inline: 2rem;
+}
+
+.form-block {
     display: block;
     margin: 5px 0;
 }
 
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-td,
-th {
-    padding: 5px;
-    border-bottom: 1px solid #aaa;
+.user-list-item blockquote {
+    color: #999;
+    padding: 0 10px;
 }

@@ -31,34 +31,31 @@ if (isset($_POST['submit'])) {
 ?>
 
 <h2>Results</h2>
-<table>
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email Address</th>
-            <th>Age</th>
-            <th>Location</th>
-            <th>Date</th>
-        </tr>
-    </thead>
-    <tbody>
-<?php foreach($result as $row) { ?>
-        <tr>
-            <td><?php echo escape($row["id"]); ?></td>
-            <td><?php echo escape($row["firstname"]); ?></td>
-            <td><?php echo escape($row["lastname"]); ?></td>
-            <td><?php echo escape($row["email"]); ?></td>
-            <td><?php echo escape($row["age"]); ?></td>
-            <td><?php echo escape($row["location"]); ?></td>
-            <td><?php echo escape($row["date"]); ?></td>
-        </tr>
-<?php } ?>
-    </tbody>
-</table>
+
+<div>
+    <div class="row">
+        <?php foreach($result as $row) { ?>
+        <div class="col-lg-4 user-list-item">
+            <h2><?php echo escape($row["firstname"]) . " " . escape($row["lastname"]); ?></h2>
+            <blockquote>
+                <span class="label label-info">
+                    <?php echo escape($row["email"]); ?>
+                </span>
+                <?php echo "Age: " . escape($row["age"]); ?>
+            </blockquote>
+            <p>
+                <?php echo "Location: " . escape($row["location"]); ?>
+            </p>
+            <p>
+                <?php echo "Date: " . escape($row["date"]); ?>
+            </p>
+        </div>
+        <?php } ?>
+    </div>
+</div>
+
 <?php } else { ?> 
-    > No results found for <?php echo escape($_POST['location']); ?>.
+    <h2>No results found for <?php echo escape($_POST['location']); ?>. </h2>
 <?php }
 } ?>
 

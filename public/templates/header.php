@@ -6,7 +6,8 @@
     <title>Simple Database App</title>
 
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
 </head>
 
 <body>
-    <h1>Simple Database App</h1>
+    <h1 class="navbar">Simple Database App</h1>

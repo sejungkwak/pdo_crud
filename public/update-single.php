@@ -1,9 +1,41 @@
-<?php require "templates/header.php"; ?>
-
-<h2>Edit a user</h2>
-
 <?php
+
+/**
+* Use an HTML form to edit an entry in the users table.
+*/
+
 require "../common.php";
+
+if (isset($_POST['submit'])) {
+    try {
+        require_once "../src/DBconnect.php";
+
+        $user = [
+            "id" => escape($_POST['id']),
+            "firstname" => escape($_POST['firstname']),
+            "lastname" => escape($_POST['lastname']),
+            "email" => escape($_POST['email']),
+            "age" => escape($_POST['age']),
+            "location" => escape($_POST['location']),
+            "date" => escape($_POST['date']),
+        ];
+
+        $sql = "UPDATE users
+                SET id = :id,
+                    firstname = :firstname,
+                    lastname = :lastname,
+                    email = :email,
+                    age = :age,
+                    location = :location,
+                    date = :date
+                WHERE id = :id";
+
+        $statement = $connection->prepare($sql);
+        $statement->execute($user);
+    } catch(PDOException $error) {
+        echo $sql . "<br>" . $error->getMessage();
+    }
+}
 
 if (isset($_GET['id'])) {
     try {
@@ -25,6 +57,14 @@ if (isset($_GET['id'])) {
     exit;
 }
 ?>
+
+<?php require "templates/header.php"; ?>
+
+<?php if (isset($_POST['submit']) && $statement) : ?>
+    <?php echo escape($_POST['firstname']); ?> successfully updated.
+<?php endif; ?>
+
+<h2>Edit a user</h2>
 
 <form method="post">
     <?php foreach ($user as $key => $value) : ?>

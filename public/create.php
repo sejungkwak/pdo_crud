@@ -1,19 +1,19 @@
 <?php include "templates/header.php"; ?>
 
-<h2>Add a user</h2>
-
 <?php 
 
 if (isset($_POST['submit'])) {
+    require "../common.php";
+
     try {
         require_once "../src/DBconnect.php";
 
         $new_user = array(
-            "firstname" => $_POST['firstname'],
-            "lastname" => $_POST['lastname'],
-            "email" => $_POST['email'],
-            "age" => $_POST['age'],
-            "location" => $_POST['location']
+            "firstname" => escape($_POST['firstname']),
+            "lastname" => escape($_POST['lastname']),
+            "email" => escape($_POST['email']),
+            "age" => escape($_POST['age']),
+            "location" => escape($_POST['location'])
         );
         $sql = sprintf( "INSERT INTO %s (%s) values (%s)", "users", implode(", ",
                 array_keys($new_user)), ":" . implode(", :", array_keys($new_user)) );
@@ -24,8 +24,12 @@ if (isset($_POST['submit'])) {
     }
 }
 
+if (isset($_POST['submit']) && $statement) {
+    echo $new_user['firstname'] . " has been successfully added!";
+}
 ?>
 
+<h2>Add a user</h2>
 <form method="post">
     <label for="firstname">First Name</label>
     <input type="text" name="firstname" id="firstname" required>
@@ -39,6 +43,7 @@ if (isset($_POST['submit'])) {
     <input type="text" name="location" id="location">
     <input type="submit" name="submit" value="Submit">
 </form>
+<br>
 <a href="index.php">Back to home</a>
 
 <?php include "templates/footer.php"; ?>
